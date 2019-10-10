@@ -62,9 +62,45 @@ int     **create_map(char *str)
     while (i < get_y(str))
     {
         map[i] = ft_memalloc(sizeof(int *) * get_x(&str[j]));
-        while (str[j] != '\n' || str[j] != '\0')
+        while (str[j] != '\n' && str[j] != '\0')
             j++;
         j++;
+        i++;
+    }
+    return (map);
+}
+
+int     **full_up_map(char *str, int **map)
+{
+    int i;
+    int x;
+    int y;
+
+    i = 0;
+    x = 0;
+    y = 0;
+    while (str[i] != '\0')
+    {
+        while (str[i] != '\n')
+        {
+            if (str[i] >= '0' && str[i] <= '9')
+            {
+                printf("str[i] = %c\n", str[i]);
+                printf("get_nbr = %d\n", ft_getnbr(&str[i]));
+                printf("x = %d\n", x);
+                printf("y = %d\n", y);
+                map[y][x] = ft_getnbr(&str[i]);
+                x++;
+                while (str[i] >= '0' && str[i] <= '9')
+                {
+                    printf("str[i] = %c\n", str[i]);
+                    i++;
+                }
+            }
+                printf("***\n");
+        }
+        x = 0;
+        y++;
         i++;
     }
     return (map);
@@ -76,6 +112,7 @@ int     main(int argc, char **argv)
     char    *str;
     int     fd;
     int     ret;
+    int     **map;
 
     ret = 0;
     buff[0] = '\0';
@@ -92,5 +129,7 @@ int     main(int argc, char **argv)
 		if (!(str = ft_strjoin(str, buff)))
 			return (0);
 	}
+    map = create_map(str);
+    map = full_up_map(str, map);
     return (0);
 }

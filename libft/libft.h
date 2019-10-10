@@ -69,5 +69,6 @@ void		ft_putnbr_fd(int n, int fd);
 void		ft_putendl(char const *s);
 char		*ft_itoa(int n);
 char		**ft_strsplit(char const *s, char c);
+int	        ft_getnbr(char *str);
 
 #endif
