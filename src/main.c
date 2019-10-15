@@ -12,98 +12,24 @@
 
 #include "../includes/fdf.h"
 
-int     get_x(char *str)
+void    show_points(/*void *mlxptr, void *winptr, */t_fdf fdf)
 {
-    int i;
-    int res;
-
-    i = 0;
-    res = 0;
-    while(str[i] != '\n' || str[i] != '\0')
-    {
-        if (str[i] >= '0' && str[i] <= '9')
-        {
-            res++;
-            while (str[i] >= '0' && str[i] <= '9')
-                i++;
-            if (str[i] == '\n' || str[i] == '\0')
-                return (res);
-        }
-        i++;
-    }
-    return (res);
-}
-
-int     get_y(char *str)
-{
-    int i;
-    int res;
-
-    i = 0;
-    res = 0;
-    while (str[i] != '\0')
-    {
-        if (str[i] == '\n')
-            res++;
-        i++;
-    }
-    return (res);
-}
-
-int     **create_map(char *str)
-{
-    int i;
-    int j;
-    int **map;
-
-    i = 0;
-    j = 0;
-    map = ft_memalloc(sizeof(int **) * get_y(str));
-    while (i < get_y(str))
-    {
-        map[i] = ft_memalloc(sizeof(int *) * get_x(&str[j]));
-        while (str[j] != '\n' && str[j] != '\0')
-            j++;
-        j++;
-        i++;
-    }
-    return (map);
-}
-
-int     **full_up_map(char *str, int **map)
-{
-    int i;
     int x;
     int y;
 
-    i = 0;
     x = 0;
     y = 0;
-    while (str[i] != '\0')
+    while (x < fdf.nb_lines)
     {
-        while (str[i] != '\n')
+        while (y < fdf.nb_cols)
         {
-            if (str[i] >= '0' && str[i] <= '9')
-            {
-                printf("str[i] = %c\n", str[i]);
-                printf("get_nbr = %d\n", ft_getnbr(&str[i]));
-                printf("x = %d\n", x);
-                printf("y = %d\n", y);
-                map[y][x] = ft_getnbr(&str[i]);
-                x++;
-                while (str[i] >= '0' && str[i] <= '9')
-                {
-                    printf("str[i] = %c\n", str[i]);
-                    i++;
-                }
-            }
-                printf("***\n");
+            printf("%d", fdf.map[x][y]);
+            y++;
         }
-        x = 0;
-        y++;
-        i++;
+        printf("\n");
+        y = 0;
+        x++;
     }
-    return (map);
 }
 
 int     main(int argc, char **argv)
@@ -112,10 +38,16 @@ int     main(int argc, char **argv)
     char    *str;
     int     fd;
     int     ret;
-    int     **map;
+    t_fdf   fdf;
+    // void    *mlxptr;
+    // void    *winptr;
 
     ret = 0;
     buff[0] = '\0';
+    str = NULL;
+    fdf.map = NULL;
+    fdf.nb_lines = 0;
+    fdf.nb_cols = 0;
     if (argc != 2)
     {
         printf("error entree\n");
@@ -129,7 +61,9 @@ int     main(int argc, char **argv)
 		if (!(str = ft_strjoin(str, buff)))
 			return (0);
 	}
-    map = create_map(str);
-    map = full_up_map(str, map);
+    fdf = init_fdf(fdf, str);
+    // mlxptr = mlx_init();
+    // winptr = mlx_new_window(mlxptr, 1000, 1000, "entrainement");
+    // mlx_loop(mlxptr);
     return (0);
 }
