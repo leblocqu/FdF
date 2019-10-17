@@ -35,3 +35,6 @@ int        main()
     mlx_key_hook(winptr, deal_key, (void *)0);
     mlx_loop(mlxptr);
 }
+
+*x = (previous_x - previous_y) * cos(0.523599);
+*y = -z + (previous_x + previous_y) * sin(0.523599);

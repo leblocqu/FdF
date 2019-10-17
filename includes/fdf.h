@@ -37,6 +37,6 @@ t_fdf   init_fdf(t_fdf fdf, char *str);
 int     **create_map(char *str, t_fdf fdf);
 int     **full_up_map(char *str, int **map);
 t_fdf   get_cols_lines(char *str, t_fdf fdf);
-void    show_points(/*void *mlxptr, void *winptr, */t_fdf fdf);
+void    show_points(void *mlxptr, void *winptr, t_fdf fdf);
 
 #endif
