@@ -12,76 +12,6 @@
 
 #include "../includes/fdf.h"
 
-void    show_points(void *mlxptr, void *winptr, t_fdf fdf)
-{
-    int x;
-    int y;
-    int previous_a;
-    int previous_b;
-    int new_a;
-    int new_b;
-    float t;
-    float u;
-
-    x = 0;
-    y = 0;
-    previous_a = 300;
-    previous_b = 300;
-    t = cos(30);
-    u = sin(30);
-    while (x < fdf.nb_lines)
-    {
-        while (y < fdf.nb_cols)
-        {
-            if (fdf.map[x][y] == 0)
-            {
-                new_a = (previous_a * t) - (previous_b * u);
-                new_b = -((previous_b * t) + (previous_a * u)); 
-                printf("new_a = %d\n", new_a);
-                printf("new_b = %d\n", new_b);
-                mlx_pixel_put(mlxptr, winptr, new_a, new_b, 0xFFFFFF);
-            }
-            else
-            {
-                new_a = (previous_a * t) - (previous_b * u);
-                new_b = -((previous_b * t) + (previous_a * u)); 
-                mlx_pixel_put(mlxptr, winptr, new_a, new_b, 0x850606);
-            }
-            
-            y++;
-            previous_a += 20;
-        }
-        previous_a = 300;
-        previous_b += 20;
-        y = 0;
-        x++;
-    }
-}
-
-// t_fdf   new_points(t_fdf fdf)
-// {
-//     int i;
-//     int j;
-//     int previous_x;
-//     int previous_y;
-
-//     i = 0;
-//     j = 0;
-//     previous_x = i;
-//     previous_y = j;
-//     while (i < fdf.nb_lines)
-//     {
-//         while (j < fdf.nb_cols)
-//         {   
-//             previous_x = j;
-
-//             j++;
-//         }
-//         j = 0;
-//         i++;
-//     }
-// }
-
 int     main(int argc, char **argv)
 {
     char    buff[BUFF_SIZE + 1];
@@ -89,8 +19,7 @@ int     main(int argc, char **argv)
     int     fd;
     int     ret;
     t_fdf   fdf;
-    void    *mlxptr;
-    void    *winptr;
+    t_mlx   mlx;
 
     ret = 0;
     buff[0] = '\0';
@@ -112,9 +41,9 @@ int     main(int argc, char **argv)
 			return (0);
 	}
     fdf = init_fdf(fdf, str);
-    mlxptr = mlx_init();
-    winptr = mlx_new_window(mlxptr, 2000, 1000, "entrainement");
-    show_points(mlxptr, winptr, fdf);
-    mlx_loop(mlxptr);
+    mlx.mlxptr = mlx_init();
+    mlx.winptr = mlx_new_window(mlx.mlxptr, 2000, 1000, "entrainement");
+    draw_all(fdf, mlx);
+    mlx_loop(mlx.mlxptr);
     return (0);
 }

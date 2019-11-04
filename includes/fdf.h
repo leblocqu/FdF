@@ -26,17 +26,33 @@
 
 # define BUFF_SIZE 1
 
+
+typedef struct s_mlx
+{
+    void *mlxptr;
+    void *winptr;
+}              t_mlx;
+
+typedef struct s_point
+{
+    int x;
+    int y;
+}              t_point;
+
 typedef struct s_fdf
 {
-    int **map;
-    int nb_lines;
-    int nb_cols;
+    int     **map;
+    int     nb_lines;
+    int     nb_cols;
+    t_point point;
 }              t_fdf;
 
+void    draw_all(t_fdf fdf, t_mlx mlx);
 t_fdf   init_fdf(t_fdf fdf, char *str);
 int     **create_map(char *str, t_fdf fdf);
 int     **full_up_map(char *str, int **map);
 t_fdf   get_cols_lines(char *str, t_fdf fdf);
-void    show_points(void *mlxptr, void *winptr, t_fdf fdf);
+void    drawline(t_mlx mlx, t_point p0, t_point p1);
+void    drawline_vertical(t_mlx mlx, t_point p0, t_point p1);
 
 #endif
