@@ -12,27 +12,27 @@
 
 #include "../includes/fdf.h"
 
-int     **create_map(char *str, t_fdf fdf)
+void    create_map(char *str, t_fdf *fdf)
 {
     int i;
     int j;
-    int **map;
 
     i = 0;
     j = 0;
-    map = ft_memalloc(sizeof(int **) * (fdf.nb_lines));
-    while (i < fdf.nb_lines)
+    get_cols_lines(str, fdf);
+    fdf->map = ft_memalloc(sizeof(int **) * (fdf->nb_lines));
+    while (i < fdf->nb_lines)
     {
-        map[i] = ft_memalloc(sizeof(int *) * fdf.nb_cols);
+        fdf->map[i] = ft_memalloc(sizeof(int *) * fdf->nb_cols);
         while (str[j] != '\n' && str[j] != '\0')
             j++;
         j++;
         i++;
     }
-    return (map);
+    full_up_map(str, fdf);
 }
 
-int     **full_up_map(char *str, int **map)
+void    full_up_map(char *str, t_fdf *fdf)
 {
     int i;
     int x;
@@ -48,7 +48,7 @@ int     **full_up_map(char *str, int **map)
         {
             if (ft_isdigit(str[i]))
             {
-                map[x][y] = ft_getnbr(&str[i]);
+                fdf->map[x][y] = ft_getnbr(&str[i]);
                 while (ft_isdigit(str[i + 1]))
                     i++;
                 y++;
@@ -58,10 +58,9 @@ int     **full_up_map(char *str, int **map)
         x++;
         y = 0;
     }
-    return (map);
 }
 
-t_fdf     get_cols_lines(char *str, t_fdf fdf)
+void    get_cols_lines(char *str, t_fdf *fdf)
 {
     int i;
 
@@ -69,22 +68,21 @@ t_fdf     get_cols_lines(char *str, t_fdf fdf)
     while (str[i] != '\0')
     {
         if (str[i] == '\n')
-            fdf.nb_lines++;
+            fdf->nb_lines++;
         i++;
     }
-    fdf.nb_lines++;
+    fdf->nb_lines++;
     i = 0;
     while(str[i] != '\n' || str[i] != '\0')
     {
         if (str[i] >= '0' && str[i] <= '9')
         {
-            fdf.nb_cols++;
+            fdf->nb_cols++;
             while (str[i] >= '0' && str[i] <= '9')
                 i++;
             if (str[i] == '\n' || str[i] == '\0')
-                return (fdf);
+                return ;
         }
         i++;
     }
-    return (fdf);
 }

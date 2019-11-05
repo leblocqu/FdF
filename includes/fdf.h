@@ -26,13 +26,6 @@
 
 # define BUFF_SIZE 1
 
-
-typedef struct s_mlx
-{
-    void *mlxptr;
-    void *winptr;
-}              t_mlx;
-
 typedef struct s_point
 {
     int x;
@@ -44,15 +37,23 @@ typedef struct s_fdf
     int     **map;
     int     nb_lines;
     int     nb_cols;
+    int     space;
+    void    *mlxptr;
+    void    *winptr;
+    int     win_length;
+    int     win_width;
     t_point point;
 }              t_fdf;
 
-void    draw_all(t_fdf fdf, t_mlx mlx);
-t_fdf   init_fdf(t_fdf fdf, char *str);
-int     **create_map(char *str, t_fdf fdf);
-int     **full_up_map(char *str, int **map);
-t_fdf   get_cols_lines(char *str, t_fdf fdf);
-void    drawline(t_mlx mlx, t_point p0, t_point p1);
-void    drawline_vertical(t_mlx mlx, t_point p0, t_point p1);
+void    draw_all(t_fdf *fdf);
+void    init_fdf(t_fdf *fdf, char *str);
+void    create_map(char *str, t_fdf *fdf);
+void    full_up_map(char *str, t_fdf *fdf);
+void    get_cols_lines(char *str, t_fdf *fdf);
+void    drawline(t_fdf *fdf, t_point p0, t_point p1);
+void    drawline_vertical(t_fdf *fdf, t_point p0, t_point p1);
+void	size_window(t_fdf *fdf);
+void	ft_space(t_fdf *fdf);
+int     ft_mlx(t_fdf *fdf);
 
 #endif

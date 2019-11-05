@@ -12,27 +12,17 @@
 
 #include "../includes/fdf.h"
 
-int     main(int argc, char **argv)
+char    *init(char *argv)
 {
     char    buff[BUFF_SIZE + 1];
     char    *str;
     int     fd;
     int     ret;
-    t_fdf   fdf;
-    t_mlx   mlx;
 
     ret = 0;
     buff[0] = '\0';
     str = NULL;
-    fdf.map = NULL;
-    fdf.nb_lines = 0;
-    fdf.nb_cols = 0;
-    if (argc != 2)
-    {
-        printf("error entree\n");
-        return (0);
-    }
-    if ((fd = open(argv[1], O_RDONLY)) == -1)
+    if ((fd = open(argv, O_RDONLY)) == -1)
 		return (0);
     while ((ret = read(fd, buff, BUFF_SIZE)) > 0)
 	{
@@ -40,10 +30,19 @@ int     main(int argc, char **argv)
 		if (!(str = ft_strjoin(str, buff)))
 			return (0);
 	}
-    fdf = init_fdf(fdf, str);
-    mlx.mlxptr = mlx_init();
-    mlx.winptr = mlx_new_window(mlx.mlxptr, 2000, 1000, "entrainement");
-    draw_all(fdf, mlx);
-    mlx_loop(mlx.mlxptr);
+    return (str);
+}
+
+int     main(int argc, char **argv)
+{
+    t_fdf   fdf;
+
+    if (argc != 2)
+    {
+        printf("error entree\n");
+        return (0);
+    }
+    ft_bzero(&fdf, sizeof(t_fdf));
+    init_fdf(&fdf, init(argv[1]));
     return (0);
 }

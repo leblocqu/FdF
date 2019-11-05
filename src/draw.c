@@ -12,7 +12,7 @@
 
 #include "../includes/fdf.h"
 
-void    draw_all(t_fdf fdf, t_mlx mlx)
+void    draw_all(t_fdf *fdf)
 {
     int i;
     int j;
@@ -27,35 +27,51 @@ void    draw_all(t_fdf fdf, t_mlx mlx)
     y = 250;
     i = 1;
     j = 0;
-    testx = 250 + (fdf.nb_cols * 20);
-    testy = 250 + (fdf.nb_lines * 20);
-    while (fdf.nb_lines >= i)
+    testx = 250 + (fdf->nb_cols * fdf->space);
+    testy = 250 + (fdf->nb_lines * fdf->space);
+    while (fdf->nb_lines >= i)
     {
-        while (fdf.nb_cols > j)
+        while (fdf->nb_cols > j)
         {
             p0.x = x;
             p0.y = y;
-            p1.x = x + 20;
+            p1.x = x + fdf->space;
             p1.y = y;
             if (p1.x < testx)
-                drawline(mlx, p0, p1);
+                drawline(fdf, p0, p1);
             p0.x = x;
             p0.y = y;
             p1.x = x;
-            p1.y = y + 20;
+            p1.y = y + fdf->space;
             if (p1.y < testy)
-                drawline(mlx, p0, p1);
+                drawline(fdf, p0, p1);
             j++;
-            x += 20;
+            x += fdf->space;
         }
-        y += 20;
+        y += fdf->space;
         x = 250;
         i++;
         j = 0;
     }
 }
 
-void    drawline(t_mlx mlx, t_point p0, t_point p1)
+// t_fdf   rotation(t_fdf fdf)
+// {
+//     int x;
+//     int y;
+
+//     x = 0;
+//     y = 0;
+//     while (y < fdf->nb_lines)
+//     {
+//         while (x < fdf->nb_cols)
+//         {
+            
+//         }
+//     }
+// }
+
+void    drawline(t_fdf *fdf, t_point p0, t_point p1)
 {
     t_point d;
     int p;
@@ -69,31 +85,27 @@ void    drawline(t_mlx mlx, t_point p0, t_point p1)
  	p = 2 * d.y - d.x;
     if (p0.x == p1.x)
     {
-        drawline_vertical(mlx, p0, p1);
+        drawline_vertical(fdf, p0, p1);
         return ;
     }
 	while (x < p1.x)
 	{
 		if (p >= 0)
 		{
-            mlx_pixel_put(mlx.mlxptr, mlx.winptr, x, y, 0xd6b017);
-            // printf("x = %d\n", x);
-            // printf("y = %d\n", y);
+            mlx_pixel_put(fdf->mlxptr, fdf->winptr, x, y, 0xd6b017);
 			y = y + 1;
 			p = p + 2 * d.y - 2 * d.x;
 		}
 		else
 		{
-            mlx_pixel_put(mlx.mlxptr, mlx.winptr, x, y, 0xd6b017);
-            // printf("x = %d\n", x);
-            // printf("y = %d\n", y);
+            mlx_pixel_put(fdf->mlxptr, fdf->winptr, x, y, 0xd6b017);
 			p = p + 2 * d.y;
 		}
 		x = x + 1;
 	}
 }
 
-void    drawline_vertical(t_mlx mlx, t_point p0, t_point p1)
+void    drawline_vertical(t_fdf *fdf, t_point p0, t_point p1)
 {
     t_point d;
     int p;
@@ -109,16 +121,12 @@ void    drawline_vertical(t_mlx mlx, t_point p0, t_point p1)
 	{
 		if (p >= 0)
 		{
-            mlx_pixel_put(mlx.mlxptr, mlx.winptr, x, y, 0xd6b017);
-            // printf("x = %d\n", x);
-            // printf("y = %d\n", y);
+            mlx_pixel_put(fdf->mlxptr, fdf->winptr, x, y, 0xd6b017);
 			p = p + 2 * d.y - 2 * d.x;
 		}
 		else
 		{
-            mlx_pixel_put(mlx.mlxptr, mlx.winptr, x, y, 0xd6b017);
-            // printf("x = %d\n", x);
-            // printf("y = %d\n", y);
+            mlx_pixel_put(fdf->mlxptr, fdf->winptr, x, y, 0xd6b017);
 			p = p + 2 * d.y;
 		}
 		y = y + 1;

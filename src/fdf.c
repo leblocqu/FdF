@@ -12,10 +12,9 @@
 
 #include "../includes/fdf.h"
 
-t_fdf   init_fdf(t_fdf fdf, char *str)
+void    init_fdf(t_fdf *fdf, char *str)
 {
-    fdf = get_cols_lines(str, fdf);
-    fdf.map = create_map(str, fdf);
-    fdf.map = full_up_map(str, fdf.map);
-    return (fdf);
+    create_map(str, fdf);
+    ft_space(fdf);
+    ft_mlx(fdf);
 }
