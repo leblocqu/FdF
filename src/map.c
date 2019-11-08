@@ -20,10 +20,10 @@ void    create_map(char *str, t_fdf *fdf)
     i = 0;
     j = 0;
     get_cols_lines(str, fdf);
-    fdf->map = ft_memalloc(sizeof(int **) * (fdf->nb_lines));
-    while (i < fdf->nb_lines)
+    fdf->map.map = ft_memalloc(sizeof(int **) * (fdf->map.nb_lines));
+    while (i < fdf->map.nb_lines)
     {
-        fdf->map[i] = ft_memalloc(sizeof(int *) * fdf->nb_cols);
+        fdf->map.map[i] = ft_memalloc(sizeof(int *) * fdf->map.nb_cols);
         while (str[j] != '\n' && str[j] != '\0')
             j++;
         j++;
@@ -48,7 +48,7 @@ void    full_up_map(char *str, t_fdf *fdf)
         {
             if (ft_isdigit(str[i]))
             {
-                fdf->map[x][y] = ft_getnbr(&str[i]);
+                fdf->map.map[x][y] = ft_getnbr(&str[i]);
                 while (ft_isdigit(str[i + 1]))
                     i++;
                 y++;
@@ -68,16 +68,16 @@ void    get_cols_lines(char *str, t_fdf *fdf)
     while (str[i] != '\0')
     {
         if (str[i] == '\n')
-            fdf->nb_lines++;
+            fdf->map.nb_lines++;
         i++;
     }
-    fdf->nb_lines++;
+    fdf->map.nb_lines++;
     i = 0;
     while(str[i] != '\n' || str[i] != '\0')
     {
         if (str[i] >= '0' && str[i] <= '9')
         {
-            fdf->nb_cols++;
+            fdf->map.nb_cols++;
             while (str[i] >= '0' && str[i] <= '9')
                 i++;
             if (str[i] == '\n' || str[i] == '\0')

@@ -25,40 +25,40 @@ int		ft_mlx(t_fdf *fdf)
 
 void	size_window(t_fdf *fdf)
 {
-	if (fdf->nb_cols <= 10)
-		fdf->win_length = fdf->nb_cols * 100;
-	else if (fdf->nb_cols <= 20)
-		fdf->win_length = fdf->nb_cols * 70;
-	else if (fdf->nb_cols >= 20 && fdf->nb_cols <= 50)
-		fdf->win_length = fdf->nb_cols * 40;
-	else if (fdf->nb_cols >= 50 && fdf->nb_cols <= 100)
-		fdf->win_length = fdf->nb_cols * 20;
-	else if (fdf->nb_cols >= 100 && fdf->nb_cols <= 200)
-		fdf->win_length = fdf->nb_cols * 10;
+	if (fdf->map.nb_cols <= 10)
+		fdf->win_length = fdf->map.nb_cols * 100;
+	else if (fdf->map.nb_cols <= 20)
+		fdf->win_length = fdf->map.nb_cols * 70;
+	else if (fdf->map.nb_cols >= 20 && fdf->map.nb_cols <= 50)
+		fdf->win_length = fdf->map.nb_cols * 40;
+	else if (fdf->map.nb_cols >= 50 && fdf->map.nb_cols <= 100)
+		fdf->win_length = fdf->map.nb_cols * 20;
+	else if (fdf->map.nb_cols >= 100 && fdf->map.nb_cols <= 200)
+		fdf->win_length = fdf->map.nb_cols * 10;
 	else
-		fdf->win_length = fdf->nb_cols * 10;
-	if (fdf->nb_lines <= 20)
-		fdf->win_width = fdf->nb_lines * 100;
-	else if (fdf->nb_lines >= 20 && fdf->nb_lines <= 50)
-		fdf->win_width = fdf->nb_lines * 40;
-	else if (fdf->nb_lines >= 50 && fdf->nb_lines <= 100)
-		fdf->win_width = fdf->nb_lines * 20;
-	else if (fdf->nb_lines >= 100 && fdf->nb_lines <= 200)
-		fdf->win_width = fdf->nb_lines * 10;
+		fdf->win_length = fdf->map.nb_cols * 10;
+	if (fdf->map.nb_lines <= 20)
+		fdf->win_width = fdf->map.nb_lines * 100;
+	else if (fdf->map.nb_lines >= 20 && fdf->map.nb_lines <= 50)
+		fdf->win_width = fdf->map.nb_lines * 40;
+	else if (fdf->map.nb_lines >= 50 && fdf->map.nb_lines <= 100)
+		fdf->win_width = fdf->map.nb_lines * 20;
+	else if (fdf->map.nb_lines >= 100 && fdf->map.nb_lines <= 200)
+		fdf->win_width = fdf->map.nb_lines * 10;
 	else
-		fdf->win_width = fdf->nb_lines * 10;
+		fdf->win_width = fdf->map.nb_lines * 10;
 }
 
 void	ft_space(t_fdf *fdf)
 {
-	if (fdf->nb_cols <= 20)
-		fdf->space = 25;
-	else if (fdf->nb_cols >= 20 && fdf->nb_cols <= 50)
-		fdf->space = 20;
-	else if (fdf->nb_cols >= 50 && fdf->nb_cols <= 100)
-		fdf->space = 15;
-	else if (fdf->nb_cols >= 100 && fdf->nb_cols <= 200)
-		fdf->space = 5;
+	if (fdf->map.nb_cols <= 20)
+		fdf->point.space = 25;
+	else if (fdf->map.nb_cols >= 20 && fdf->map.nb_cols <= 50)
+		fdf->point.space = 20;
+	else if (fdf->map.nb_cols >= 50 && fdf->map.nb_cols <= 100)
+		fdf->point.space = 15;
+	else if (fdf->map.nb_cols >= 100 && fdf->map.nb_cols <= 200)
+		fdf->point.space = 5;
 	else
-		fdf->space = 1;
+		fdf->point.space = 1;
 }

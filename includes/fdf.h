@@ -23,6 +23,7 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <stdio.h>
+# include "key_code.h"
 
 # define BUFF_SIZE 1
 
@@ -30,18 +31,34 @@ typedef struct s_point
 {
     int x;
     int y;
+    int space;
 }              t_point;
+
+typedef struct t_map
+{
+    int **map;
+    int x;
+    int y;
+    int nb_lines;
+    int nb_cols;
+}               s_map;
 
 typedef struct s_fdf
 {
-    int     **map;
-    int     nb_lines;
-    int     nb_cols;
-    int     space;
+    // int     **map;
+    // int     nb_lines;
+    // int     nb_cols;
     void    *mlxptr;
     void    *winptr;
     int     win_length;
     int     win_width;
+    void	*img_ptr;
+	char	*data;
+    int     bpp;
+    int     size_line;
+    int     endian;
+    int     proj;
+    s_map   map;
     t_point point;
 }              t_fdf;
 
@@ -55,5 +72,7 @@ void    drawline_vertical(t_fdf *fdf, t_point p0, t_point p1);
 void	size_window(t_fdf *fdf);
 void	ft_space(t_fdf *fdf);
 int     ft_mlx(t_fdf *fdf);
+void    ft_get_p1_cols(t_fdf *fdf);
+// int     ft_key_hook(int keycode, t_env *fdf);
 
 #endif

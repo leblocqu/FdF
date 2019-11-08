@@ -1,0 +1,17 @@
+struct_xyz	get_points()
+{
+	// x, y et z tu les a deja normalement donc tu les mets en parametre de ta fonction et tu fais ca
+	int px;
+	int	py;
+	int cx;
+	int	cy;
+	int f;
+
+	f = 64;
+	cx = f
+	cy = f;
+	px = cx + ((x * f) / (z + 2.5));
+	py = cy + ((y * f) / (z + 2.5));
+	// la il faut return px et py donc tu fais une structure de tout ca
+	return (la strcture);
+}
