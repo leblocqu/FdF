@@ -34,6 +34,7 @@ int		ft_mlx(t_fdf *fdf)
 	size_window(fdf);
 	ft_init(fdf);
 	fdf->winptr = mlx_new_window(fdf->mlxptr, fdf->win_width , fdf->win_length, "entrainement");
+	mlx_string_put(fdf->mlxptr, fdf->winptr, 10, 10, WHITE, "How to Use");
 	mlx_key_hook(fdf->winptr, key_hook, fdf);
 	mlx_expose_hook(fdf->winptr, expose_hook, fdf);
 	mlx_loop(fdf->mlxptr);

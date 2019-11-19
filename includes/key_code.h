@@ -130,5 +130,7 @@
 # define KEY_PAD_ADD		69
 # define KEY_PAD_ENTER		76
 # define KEY_PAD_DOT		65
+# define WHITE              0xFFFFFF
+# define RED                0xFF0000
 
 #endif

@@ -41,6 +41,7 @@ int	expose_hook(t_fdf *fdf)
 			&fdf->size_line, &fdf->endian);
 	draw_all(fdf);
 	mlx_put_image_to_window(fdf->mlxptr, fdf->winptr, fdf->img_ptr, 0, 0);
+	draw_menu(fdf);
 	mlx_destroy_image(fdf->mlxptr, fdf->img_ptr);
 	return (0);
 }

@@ -113,5 +113,9 @@ void	ft_key_hook_proj(t_fdf *fdf);
 void	ft_init(t_fdf *fdf);
 int     expose_hook(t_fdf *fdf);
 void	ft_key_hook_color(int keycode, t_fdf *fdf);
+void    draw_menu(t_fdf *fdf);
+void    draw_cube(t_fdf *fdf);
+void    draw_cube_2(t_fdf *fdf);
+void    draw_cube_3(t_fdf *fdf);
 
 #endif
