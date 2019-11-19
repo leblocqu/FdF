@@ -12,6 +12,33 @@
 
 #include "../includes/fdf.h"
 
+void    get_max(t_fdf *fdf)
+{
+    int i;
+    int j;
+    int max;
+
+    max = 0;
+    i = 0;
+    j = 0;
+    if (fdf->map.nb_cols == 0)
+    {
+        fdf->map.max = 0;
+        return ;
+    }
+    while (i < fdf->map.nb_lines)
+    {
+        while (j < fdf->map.nb_cols)
+        {
+            if (fdf->map.map[i][j] > max)
+                fdf->map.max = fdf->map.map[i][j];
+            j++;
+        }
+        j = 0;
+        i++;
+    }
+}
+
 void    create_map(char *str, t_fdf *fdf)
 {
     int i;
@@ -46,9 +73,9 @@ void    full_up_map(char *str, t_fdf *fdf)
     {
         while (str[i] != '\n')
         {
-            if (ft_isdigit(str[i]))
+            if (ft_isdigit(str[i]) || str[i] == '-')
             {
-                fdf->map.map[x][y] = ft_getnbr(&str[i]);
+                fdf->map.map[x][y] = ft_atoi(&str[i]);
                 while (ft_isdigit(str[i + 1]))
                     i++;
                 y++;
@@ -71,16 +98,15 @@ void    get_cols_lines(char *str, t_fdf *fdf)
             fdf->map.nb_lines++;
         i++;
     }
-    fdf->map.nb_lines++;
     i = 0;
     while(str[i] != '\n' || str[i] != '\0')
     {
-        if (str[i] >= '0' && str[i] <= '9')
+        if (ft_isdigit(str[i]) == 1)
         {
             fdf->map.nb_cols++;
-            while (str[i] >= '0' && str[i] <= '9')
+            while (ft_isdigit(str[i]) == 1)
                 i++;
-            if (str[i] == '\n' || str[i] == '\0')
+            if (str[i] == '\n'  || str[i] == '\0' || str[i + 1] == '\n' || str[i] == '\0')
                 return ;
         }
         i++;

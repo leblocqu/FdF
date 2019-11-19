@@ -12,16 +12,34 @@
 
 #include "../includes/fdf.h"
 
+void	ft_init(t_fdf *fdf)
+{
+	if (!fdf->color.color)
+	{
+		fdf->color.red = 255;
+		fdf->color.green = 255;
+		fdf->color.blue = 255;
+	}
+	fdf->point.cte = fdf->map.max / 200.00;
+	fdf->point.cte1 = 0.5;
+	fdf->point.cte2 = 0.5;
+	fdf->point.pos = 1;
+	fdf->map.l_r = fdf->win_length / 4;
+	fdf->map.d_u = fdf->win_width / 4;
+}
+
 int		ft_mlx(t_fdf *fdf)
 {
 	fdf->mlxptr = mlx_init();
 	size_window(fdf);
+	ft_init(fdf);
 	fdf->winptr = mlx_new_window(fdf->mlxptr, fdf->win_width , fdf->win_length, "entrainement");
-	// mlx_key_hook(fdf.winptr, ft_key_hook, fdf);
-	draw_all(fdf);
+	mlx_key_hook(fdf->winptr, key_hook, fdf);
+	mlx_expose_hook(fdf->winptr, expose_hook, fdf);
 	mlx_loop(fdf->mlxptr);
 	return (0);
 }
+
 
 void	size_window(t_fdf *fdf)
 {

@@ -43,6 +43,6 @@ int     main(int argc, char **argv)
         return (0);
     }
     ft_bzero(&fdf, sizeof(t_fdf));
-    init_fdf(&fdf, init(argv[1]));
+    init_fdf(fdf, init(argv[1]));
     return (0);
 }
