@@ -29,8 +29,13 @@ void	draw_cols(t_fdf *fdf)
 {
 	fdf->map.x = 0;
 	fdf->point.x = 0;
+	// printf("truc = %f\n", fdf->map.nb_cols * fdf->point.space);
+	// printf("point.x = %d\n", fdf->point.x);
+	// printf("point.y = %d\n", fdf->point.y);
 	while (fdf->point.x < fdf->map.nb_cols * fdf->point.space)
 	{
+		// printf("map.x = %d\n", fdf->map.x++);
+		// printf("point.x = %d\n", fdf->point.x);
 		fdf->point.y = 0;
 		fdf->map.y = 0;
 		get_p1_cols(fdf);
@@ -57,6 +62,8 @@ void	draw_lines(t_fdf *fdf)
 {
 	fdf->map.y = 0;
 	fdf->point.y = 0;
+	// printf("truc = %f\n", fdf->map.nb_cols * fdf->point.space);
+	// printf("point.x = %d\n", fdf->point.x);
 	while (fdf->point.y < fdf->map.nb_lines * fdf->point.space)
 	{
 		fdf->map.x = 0;

@@ -64,11 +64,12 @@ void    full_up_map(char *str, t_fdf *fdf)
     int i;
     int x;
     int y;
+    int test;
 
     i = -1;
     x = 0;
     y = 0;
-
+    test = 0;
     while (str[++i] != '\0')
     {
         while (str[i] != '\n')
@@ -79,6 +80,7 @@ void    full_up_map(char *str, t_fdf *fdf)
                 while (ft_isdigit(str[i + 1]))
                     i++;
                 y++;
+                test++;
             }
             i++;
         }

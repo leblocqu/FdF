@@ -6,7 +6,7 @@
 /*   By: leblocqu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 15:30:52 by leblocqu          #+#    #+#             */
-/*   Updated: 2019/10/09 15:30:54 by leblocqu         ###   ########.fr       */
+/*   Updated: 2020/05/06 17:37:58 by leblocqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FDF_H
 
 # include "mlx.h"
-# include "../libft/libft.h"
+# include "../libft/includes/libft.h"
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>

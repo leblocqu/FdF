@@ -24,8 +24,8 @@ void	ft_init(t_fdf *fdf)
 	fdf->point.cte1 = 0.5;
 	fdf->point.cte2 = 0.5;
 	fdf->point.pos = 1;
-	fdf->map.l_r = fdf->win_length / 4;
-	fdf->map.d_u = fdf->win_width / 4;
+	fdf->map.l_r = 280;
+	fdf->map.d_u = 250;
 }
 
 int		ft_mlx(t_fdf *fdf)
@@ -33,7 +33,7 @@ int		ft_mlx(t_fdf *fdf)
 	fdf->mlxptr = mlx_init();
 	size_window(fdf);
 	ft_init(fdf);
-	fdf->winptr = mlx_new_window(fdf->mlxptr, fdf->win_width , fdf->win_length, "entrainement");
+	fdf->winptr = mlx_new_window(fdf->mlxptr, fdf->win_length , fdf->win_width, "entrainement");
 	mlx_string_put(fdf->mlxptr, fdf->winptr, 10, 10, WHITE, "How to Use");
 	mlx_key_hook(fdf->winptr, key_hook, fdf);
 	mlx_expose_hook(fdf->winptr, expose_hook, fdf);
@@ -44,28 +44,8 @@ int		ft_mlx(t_fdf *fdf)
 
 void	size_window(t_fdf *fdf)
 {
-	if (fdf->map.nb_cols <= 10)
-		fdf->win_length = fdf->map.nb_cols * 100;
-	else if (fdf->map.nb_cols <= 20)
-		fdf->win_length = fdf->map.nb_cols * 70;
-	else if (fdf->map.nb_cols >= 20 && fdf->map.nb_cols <= 50)
-		fdf->win_length = fdf->map.nb_cols * 40;
-	else if (fdf->map.nb_cols >= 50 && fdf->map.nb_cols <= 100)
-		fdf->win_length = fdf->map.nb_cols * 20;
-	else if (fdf->map.nb_cols >= 100 && fdf->map.nb_cols <= 200)
-		fdf->win_length = fdf->map.nb_cols * 10;
-	else
-		fdf->win_length = fdf->map.nb_cols * 10;
-	if (fdf->map.nb_lines <= 20)
-		fdf->win_width = fdf->map.nb_lines * 100;
-	else if (fdf->map.nb_lines >= 20 && fdf->map.nb_lines <= 50)
-		fdf->win_width = fdf->map.nb_lines * 40;
-	else if (fdf->map.nb_lines >= 50 && fdf->map.nb_lines <= 100)
-		fdf->win_width = fdf->map.nb_lines * 20;
-	else if (fdf->map.nb_lines >= 100 && fdf->map.nb_lines <= 200)
-		fdf->win_width = fdf->map.nb_lines * 10;
-	else
-		fdf->win_width = fdf->map.nb_lines * 10;
+	fdf->win_length = (fdf->map.nb_cols * (fdf->point.space)) + 500;
+	fdf->win_width = (fdf->map.nb_lines * (fdf->point.space)) + 400;
 }
 
 void	ft_space(t_fdf *fdf)

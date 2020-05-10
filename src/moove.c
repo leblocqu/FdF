@@ -53,13 +53,13 @@ void	ft_key_hook_alt(int keycode, t_fdf *fdf)
 
 void	ft_key_hook_zoom(int keycode, t_fdf *fdf)
 {
-	if (keycode == KEY_PAD_1)
+	if (keycode == KEY_Z)
 	{
 		fdf->point.space -= 5;
 		if (fdf->point.space <= 0)
 			fdf->point.space += 5;
 	}
-	else if (keycode == KEY_PAD_2)
+	else if (keycode == KEY_S)
 		fdf->point.space += 5;
 }
 

@@ -24,12 +24,10 @@ int	key_hook(int keycode, t_fdf *fdf)
 		ft_key_hook_move(keycode, fdf);
 	else if (keycode == KEY_PAD_ADD || keycode == KEY_PAD_SUB)
 		ft_key_hook_alt(keycode, fdf);
-	else if (keycode == KEY_PAD_1 || keycode == KEY_PAD_2)
+	else if (keycode == KEY_Z || keycode == KEY_S)
 		ft_key_hook_zoom(keycode, fdf);
 	else if (keycode == KEY_P)
 		ft_key_hook_proj(fdf);
-	else if (keycode == KEY_Z)
-		ft_init(fdf);
 	expose_hook(fdf);
 	return (0);
 }

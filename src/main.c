@@ -24,10 +24,12 @@ char    *init(char *argv)
     str = NULL;
     if ((fd = open(argv, O_RDONLY)) == -1)
 		return (0);
+    if (!(fd))
+        return (NULL);
     while ((ret = read(fd, buff, BUFF_SIZE)) > 0)
 	{
 		buff[ret] = '\0';
-		if (!(str = ft_strjoin(str, buff)))
+		if (!(str = ft_strjoin_free(str, buff, 1)))
 			return (0);
 	}
     return (str);
@@ -39,10 +41,11 @@ int     main(int argc, char **argv)
 
     if (argc != 2)
     {
-        printf("error entree\n");
+        printf("Error Syntax Entree\n");
         return (0);
     }
     ft_bzero(&fdf, sizeof(t_fdf));
     init_fdf(fdf, init(argv[1]));
+    free(&fdf);
     return (0);
 }

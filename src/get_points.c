@@ -20,8 +20,10 @@ void	ft_bresenham(t_fdf *fdf)
 	fdf->point.sy = (fdf->point.y1 < fdf->point.y2 ? 1 : -1);
 	fdf->point.err = (fdf->point.dx > fdf->point.dy ?
 			fdf->point.dx : -fdf->point.dy) / 2;
+		// printf("trucx = %d && trucy = %d\n", fdf->map.l_r + fdf->point.x1, fdf->map.d_u + fdf->point.y1);
 	while (1)
 	{
+		//printf("trucquix = %d\n && trucquiy = %d\n", fdf->map.l_r, fdf->map.d_u);
 		ft_pixel_put(fdf, fdf->map.l_r + fdf->point.x1,
 					fdf->map.d_u + fdf->point.y1);
 		if (fdf->point.x1 == fdf->point.x2 && fdf->point.y1 == fdf->point.y2)
@@ -55,6 +57,7 @@ void    get_p1_cols(t_fdf *fdf)
 		fdf->point.y1 = ((fdf->point.pos * (fdf->map.map[fdf->map.y][fdf->map.x])) + (fdf->point.cte1 / 2) *
 				fdf->point.x + (fdf->point.cte2 / 2) * fdf->point.y);
 	}
+	// printf("poin.x1 = %d && point.y1 = %d\n", fdf->point.x1, fdf->point.y1);
 }
 
 void	get_p2_cols(t_fdf *fdf)
@@ -73,6 +76,7 @@ void	get_p2_cols(t_fdf *fdf)
 			fdf->point.x + (fdf->point.cte2 / 2) *
 			(fdf->point.y + fdf->point.space);
 	}
+	// printf("poin.x2 = %d && point.y2 = %d\n", fdf->point.x2, fdf->point.y2);
 }
 
 void	get_p1_line(t_fdf *fdf)
